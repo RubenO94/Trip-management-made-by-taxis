@@ -29,6 +29,7 @@ int menu_principal(){
         {
         case 0:
             printf("\n\n\tPrograma terminado com sucesso!");
+            printf("\n");
             break;
         case 1:
             retorno = registrar_viagem("taxis.dat", ler_num_taxi(), ler_viagem());
@@ -47,7 +48,6 @@ int menu_principal(){
             break;            
         default:
             printf("\n\n Opcao invalida. Tente novamente");
-            printf("\n");
             pausar_mensagem();
             break;
         }
@@ -88,6 +88,7 @@ int sub_menu_Admin(){
             break;
         case 2:
             // infos_empresa();
+            printf("\n\tErro: Funcao ainda em desenvolvimento...\n");
             pausar_mensagem();
             break;  
         default:

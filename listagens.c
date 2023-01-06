@@ -322,6 +322,7 @@ int imprimir_valor_total(){
 
 int imprimir_media_viagens(){
     float media = calcular_media_viagens();
+    limpar_tela();
     printf("\n            //////////// # GESTAO DE VIAGENS # ////////////\n\n\n");
     printf("        +---------------------------------------------------------+\n");
     printf("        |                   Valor medio (S/IVA)                   |\n");
