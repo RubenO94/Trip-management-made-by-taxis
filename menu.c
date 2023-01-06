@@ -47,6 +47,7 @@ int menu_principal(){
             break;            
         default:
             printf("\n\n Opcao invalida. Tente novamente");
+            printf("\n");
             pausar_mensagem();
             break;
         }
