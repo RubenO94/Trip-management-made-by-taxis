@@ -175,15 +175,15 @@ int listar_viagens_tipo (TipoViagem tipo){
 // 9. Listar informação sobre as viagens cujo preço acima da média.
 int listar_viagens_valor_acima_media(){
     float media = calcular_media_viagens();
-    if (media < 0) {
-        return -7;
-    }
     limpar_tela();
     printf("\n            //////////// # GESTAO DE VIAGENS # ////////////\n\n\n");
     printf("        +---------------------------------------------------------+\n");
     printf("        |               Viagens com valor acima da media          |\n");
     printf("        +---------------------------------------------------------+\n");
     printf("\n");
+    if (media <= 0) {
+        return -7;
+    }
     printf("            # Media Atual:.......... %.2f EUR\n", media);
     printf("\n");
     printf("        ___________________________________________________________\n");
@@ -356,9 +356,15 @@ int imprimir_menor_valor (float valor){
             }
         }
     }    
+    
     fclose(arquivo); 
 
-    return 0; 
+    if (valor == FLT_MAX)
+    {
+        return -4;
+    }
+
+    return 0;
 }
 
 // Imprimir viagem:
