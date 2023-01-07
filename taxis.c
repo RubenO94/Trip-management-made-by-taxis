@@ -22,6 +22,7 @@ int registrar_viagem(const char* nome_arquivo, int num_taxi, Viagem viagem) {
     }
 
     // Caso tenha espaço adiciona a nova viagem ao táxi
+    guardar_contador(); // guarda o contador de referencias
     taxi.viagens[taxi.num_viagens] = viagem;
     taxi.num_viagens++;
 

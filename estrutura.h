@@ -4,8 +4,8 @@
 #include "limpar_consola.h"
 
 //Constantes globais:
-#define MAX_VIAGENS 10
-#define NUM_TAXIS 20
+#define MAX_VIAGENS 5
+#define NUM_TAXIS 10
 #define IVA 0.23
 
 

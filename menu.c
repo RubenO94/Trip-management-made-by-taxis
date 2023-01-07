@@ -33,7 +33,6 @@ int menu_principal(){
             break;
         case 1:
             retorno = registrar_viagem("taxis.dat", ler_num_taxi(), ler_viagem());
-            guardar_contador(); // guarda o contador de referencias
             mensagem_retorno(retorno);
             pausar_mensagem();
             break;
