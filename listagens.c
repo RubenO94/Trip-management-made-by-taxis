@@ -175,6 +175,7 @@ int listar_viagens_tipo (TipoViagem tipo){
 // 9. Listar informação sobre as viagens cujo preço acima da média.
 int listar_viagens_valor_acima_media(){
     float media = calcular_media_viagens();
+    int viagemEncontrada = 0;
     limpar_tela();
     printf("\n            //////////// # GESTAO DE VIAGENS # ////////////\n\n\n");
     printf("        +---------------------------------------------------------+\n");
@@ -191,7 +192,6 @@ int listar_viagens_valor_acima_media(){
     if (arquivo == NULL) {
         return -1;
     }
-
     Taxi taxi;
     while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1) {
         for (int j = 0; j < taxi.num_viagens; j++) {
@@ -199,12 +199,17 @@ int listar_viagens_valor_acima_media(){
             if (viagem->valor > media)
             {
                 imprimir_viagem(taxi, viagem);
+                viagemEncontrada = 1;
             }
         }
     }
 
     fclose(arquivo);
-
+    if (!viagemEncontrada)
+    {
+        return -9;
+    }
+    
     return 0;
 }
 

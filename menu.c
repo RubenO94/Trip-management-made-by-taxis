@@ -46,7 +46,7 @@ int menu_principal(){
             sub_menu_Admin();
             break;            
         default:
-            printf("\n\n Opcao invalida. Tente novamente");
+            printf("\n\n Opcao invalida. Tenta novamente");
             pausar_mensagem();
             break;
         }
@@ -233,7 +233,7 @@ int sub_menu_Calculos(){
         case 6:
             break;                        
         default:
-            printf("\n\n Opcao invalida. Tente novamente");
+            printf("\n\n Opcao invalida. Tenta novamente");
             pausar_mensagem();
             break;
         }

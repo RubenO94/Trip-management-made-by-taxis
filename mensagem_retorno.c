@@ -30,8 +30,11 @@ void mensagem_retorno(int retorno){
         printf("\n\n\tErro: Nao foi possivel fazer o calculo!"); 
         break;
     case -8:
-        printf("\n\n\tErro: A referencia inserida nao existe no sistema!");   
-
+        printf("\n\n\tErro: A referencia inserida nao existe no sistema!");
+        break;
+    case -9:
+        printf("\n\n\tErro: Ainda nao existe viagens com valor acima da media!");
+        break;
     default:
         printf("\n\n\tNao foi possivel concluir o processo!");
         break;
