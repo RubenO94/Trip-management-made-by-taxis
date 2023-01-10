@@ -27,9 +27,8 @@ int criar_taxis(const char* nome_arquivo) {
     reset_contador();
 
     // Mensagem alerta:
-    printf("\n\n\tLista de taxis reniciada!");
-    printf("\n\tForam criados %d taxis novos com sucesso!", NUM_TAXIS);
-    printf("\n\tContador de referencias reniciado!");
-    printf("\n\tPrograma pronto a funcionar.");
+    printf("\n\n\tEmpresa incializada...");
+    printf("\n\tForam adicionados %d taxis.", NUM_TAXIS);
+    printf("\n\tSucesso! Programa pronto a funcionar.");
     return 0; // Sucesso
 }
