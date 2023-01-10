@@ -25,9 +25,17 @@ int ler_num_taxi() {
 
 TipoViagem ler_tipo(){
     TipoViagem tipo;
-    printf("     # Insira o tipo de viagem (L - local, N - nacional, I - internacional, O - outra): ");
     char tipo_str[2];
-    scanf("%s", tipo_str);
+    do{
+        printf("     # Insira o tipo de viagem (L - local, N - nacional, I - internacional, O - outra): ");
+        scanf("%s", tipo_str);
+        if (tipo_str[0] != 'L' && tipo_str[0] != 'N' && tipo_str[0] != 'I' && tipo_str[0] != 'O')
+        {
+            printf("\nErro: Caracter invalido! Tente novamente.\n");
+        }
+        
+    } while (tipo_str[0] != 'L' && tipo_str[0] != 'N' && tipo_str[0] != 'I' && tipo_str[0] != 'O');
+
     switch (tipo_str[0]) {
         case 'L':
         tipo = LOCAL;
