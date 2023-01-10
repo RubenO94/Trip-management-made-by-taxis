@@ -68,7 +68,7 @@ int sub_menu_Admin(){
         printf("        +---------------------------------------------------------+\n");
         printf("        +---------------------------------------------------------+\n");
         printf("        |                                                         |\n");
-        printf("        |       1 - Inicializar Empresa                           |\n");
+        printf("        |       1 - Iniciar / Reniciar Empresa                    |\n");
         printf("        |       2 - Informacao sobre o programa                   |\n");
         printf("        |       0 - Voltar                                        |\n");
         printf("        |                                                         |\n");
