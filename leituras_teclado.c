@@ -60,12 +60,12 @@ float ler_distancia(){
     {
         printf("     # Insira a distancia percorrida: ");
         scanf("%f", &distancia);
-        if (distancia < 0)
+        if (distancia <= 0)
         {
-            printf("\nErro: A distancia nao pode ter valor negativo!\nTente novamente.\n");
+            printf("\nErro: A distancia nao pode ter valor zero ou negativo!\nTente novamente.\n");
         }
         
-    } while (distancia < 0);
+    } while (distancia <= 0);
     return distancia;
 }
 
@@ -76,11 +76,11 @@ float ler_valor(){
     {
         printf("     # Insira o valor da viagem: ");
         scanf("%f", &valor);
-        if (valor < 0)
+        if (valor <= 0)
         {
-            printf("\nErro: O valor da viagem nao pode ser negativo!\nTente novamente.\n");
+            printf("\nErro: O valor da viagem nao pode ser zero ou negativo!\nTente novamente.\n");
         }
         
-    } while (valor < 0);
+    } while (valor <= 0);
     return valor;
 }
