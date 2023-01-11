@@ -4,7 +4,7 @@
 //Esta é a função que incializa o ficheiro taxis.dat e adiciona os taxis
 
 int criar_taxis(const char* nome_arquivo) {
-    // Abre o arquivo em modo wwrite binario
+    
     FILE* fp = fopen(nome_arquivo, "wb");
     if (fp == NULL) {
         return -1; // Erro: falha ao abrir o arquivo

@@ -53,7 +53,6 @@ int listar_viagens(const char* nome_arquivo) {
     return 0;
 }
 
-// 3. Listar a informação sobre as viagens efetuada por um determinado táxi (número do táxi deve ser introduzido pelo utilizador). 
 int listar_viagens_taxi(int num_taxi) {
     limpar_tela();
     printf("\n            //////////// # GESTAO DE VIAGENS # ////////////\n\n\n");
@@ -90,11 +89,14 @@ int listar_viagens_taxi(int num_taxi) {
     }else if(!viagem_encontrada){
         return -3;
     }
+    printf("\n");
+    printf("            # Total de viagens efetuadas pelo taxi %.2d: %d\n",taxi.num, taxi.num_viagens);
+    printf("\n");
+    printf("        ___________________________________________________________\n");
 
     return 0; 
 }
 
-// 4. Listar a informação sobre uma determinada viagem (introduzida pelo utilizador).
 int listar_viagem_por_referencia(int referencia){
     limpar_tela();
     printf("\n            //////////// # GESTAO DE VIAGENS # ////////////\n\n\n");
@@ -122,7 +124,6 @@ int listar_viagem_por_referencia(int referencia){
     return -8;
 }
 
-// 8. Listar a informação sobres as viagens de um determinado tipo.
 int listar_viagens_tipo (TipoViagem tipo){
     limpar_tela();
     printf("\n            //////////// # GESTAO DE VIAGENS # ////////////\n\n\n");
@@ -133,10 +134,10 @@ int listar_viagens_tipo (TipoViagem tipo){
         printf("        |                    Viagens do Tipo Local                |\n");
         break;
     case NACIONAL:
-        printf("        |                    Viagens do Tipo Nacional             |\n");
+        printf("        |                  Viagens do Tipo Nacional               |\n");
         break;
     case INTERNACIONAL:
-        printf("        |                    Viagens do Tipo Internacional        |\n");
+        printf("        |              Viagens do Tipo Internacional              |\n");
         break;
     case OUTRA:
         printf("        |                    Viagens do Tipo Outra                |\n");
@@ -172,7 +173,6 @@ int listar_viagens_tipo (TipoViagem tipo){
 }
 
 
-// 9. Listar informação sobre as viagens cujo preço acima da média.
 int listar_viagens_valor_acima_media(){
     float media = calcular_media_viagens();
     int viagemEncontrada = 0;
@@ -253,7 +253,6 @@ int listar_valor_total_tipo(){
     return 0;
 }
 
-// 12. Para um determinado táxi (introduzido pelo utilizador), listar a informação sobre a viagem com valor recebido mais alto.
 int listar_viagem_mais_cara(int num_taxi){
     limpar_tela();
     printf("\n            //////////// # GESTAO DE VIAGENS # ////////////\n\n\n");
@@ -320,7 +319,6 @@ int imprimir_valor_total(){
     printf("            # Valor total (S/IVA):.... %.2f EUR\n", total);
     printf("\n");
     printf("        ___________________________________________________________\n");
-    //printf("\nValor (S/IVA) total das viagens efetuadas: %.2f EUR", total);
 
     return 0;
 }
@@ -372,7 +370,6 @@ int imprimir_menor_valor (float valor){
     return 0;
 }
 
-// Imprimir viagem:
 int imprimir_viagem(Taxi taxi, Viagem* viagem){
     sleep(1); // Foi uma maneira de adicionar um "loading" entre viagens para que quando a lista seja longa nao aparecer tudo de uma vez
     printf("\n");
