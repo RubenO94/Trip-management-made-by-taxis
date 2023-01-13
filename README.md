@@ -21,7 +21,7 @@ The application already comes with some registered trips, but if you prefer to c
 
 ***Windows***
 - Compile: all
-- Clear all: clean
+- Clear all: cleanw
 - Clean only .d files: cleandepw
 
 ***Linux and MacOS***
