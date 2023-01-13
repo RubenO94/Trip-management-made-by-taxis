@@ -1,4 +1,4 @@
-#include "estrutura.h"
+#include "../headers/estrutura.h"
 #include <stdio.h>
 
 int sub_menu_Admin();
@@ -7,7 +7,7 @@ int sub_menu_Listagens();
 int sub_menu_Calculos();
 
 int main() {
-   int opt = 0;
+    int opt = 0;
     int retorno;
 
     do
@@ -199,7 +199,7 @@ int sub_menu_Calculos(){
         printf("        |       3 - Calcular IVA total das viagens                |\n");
         printf("        |       4 - Calcular valor total por cada tipo de viagem  |\n");
         printf("        |       5 - Exibir numero de viagens de cada tipo         |\n");
-        printf("        |       6 - Folha de estatisticas (INDISPONIVEL)          |\n"); 
+        printf("        |       6 - Testes de funcoes                             |\n"); 
         printf("        |       0 - Voltar                                        |\n");
         printf("        |                                                         |\n");
         printf("        +---------------------------------------------------------+\n");
@@ -236,6 +236,10 @@ int sub_menu_Calculos(){
             pausar_mensagem();
             break;
         case 6:
+            retorno = contar_numero_viagens();
+            //retorno = contabilizar_viagens_taxi(); // Função em desenvolvimento...
+            mensagem_retorno(retorno);
+            pausar_mensagem();
             break;                        
         default:
             printf("\n\n Opcao invalida. Tenta novamente");

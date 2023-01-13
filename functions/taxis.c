@@ -1,4 +1,4 @@
-#include "estrutura.h"
+#include "../headers/estrutura.h"
 #include <stdio.h>
 
 //Esta é a função que incializa o ficheiro taxis.dat e adiciona os taxis

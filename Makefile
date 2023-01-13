@@ -10,8 +10,9 @@ LDFLAGS =
 # Makefile settings - Can be customized.
 APPNAME = myapp
 EXT = .c
-SRCDIR = .
-OBJDIR = .
+SRCDIR = functions
+OBJDIR = obj
+HEADER_DIR = headers
 
 ############## Do not change anything from here downwards! #############
 SRC = $(wildcard $(SRCDIR)/*$(EXT))
@@ -44,9 +45,9 @@ $(APPNAME): $(OBJ)
 
 # Building rule for .o files and its .c/.cpp in combination with all .h
 $(OBJDIR)/%.o: $(SRCDIR)/%$(EXT)
-	$(CC) $(CXXFLAGS) -o $@ -c $<
+	$(CC) $(CXXFLAGS) -I$(HEADER_DIR) -o $@ -c $<
 
-################### Cleaning rules for Unix-based OS ###################
+# sed ################## Cleaning rules for Unix-baOS ###################
 # Cleans complete project
 .PHONY: clean
 clean:

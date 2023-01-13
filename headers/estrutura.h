@@ -56,6 +56,7 @@ int imprimir_menor_valor (float valor);
 int imprimir_IVA_total();
 
 //Calculos:
+int contar_numero_viagens();
 int numero_viagens_tipo(TipoViagem tipo);
 float calcular_valor_total_viagens();
 float calcular_media_viagens();
@@ -82,4 +83,5 @@ void mensagem_retorno(int retorno);
 
 // Funções extra Trabalho:
 int contabilizar_viagens_taxi();
+int top10_viagens_baratas();
 #endif

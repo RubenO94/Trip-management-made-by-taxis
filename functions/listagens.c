@@ -1,4 +1,4 @@
-#include "estrutura.h"
+#include "../headers/estrutura.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <float.h>
@@ -30,6 +30,7 @@ int listar_viagens(const char* nome_arquivo) {
         return -1;
     }
 
+    int totalViagens = contar_numero_viagens();
     Taxi taxi;
     int viagem_encontrada = 0;
     while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1) {
@@ -43,6 +44,10 @@ int listar_viagens(const char* nome_arquivo) {
         
         }
     }
+     printf("\n");
+    printf("            # Total de viagens:............. %d\n", totalViagens);
+    printf("\n");
+    printf("        ___________________________________________________________\n");
     printf("\n");
     fclose(arquivo);
     if (!viagem_encontrada)

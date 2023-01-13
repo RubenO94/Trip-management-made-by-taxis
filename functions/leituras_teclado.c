@@ -1,4 +1,4 @@
-#include "estrutura.h"
+#include "../headers/estrutura.h"
 #include <stdio.h>
 #include <stdlib.h>
 

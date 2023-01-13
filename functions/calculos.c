@@ -1,4 +1,4 @@
-#include "estrutura.h"
+#include "../headers/estrutura.h"
 #include <stdio.h>
 #include <float.h>
    
@@ -18,30 +18,34 @@ float calcular_valor_total_viagens() {
     }
 
     fclose(arquivo);
+
     return total;
 }
 
-float calcular_media_viagens() {
+int contar_numero_viagens(){
     FILE* arquivo = fopen("taxis.dat", "rb");
-    if (arquivo == NULL) {
-        return 0;
+    if (arquivo == NULL)
+    {
+        return -1;
     }
-
-    int num_viagens = 0;
-    float total = 0;
+    
+    int numero_viagens = 0;
     Taxi taxi;
-    while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1) {
-        num_viagens += taxi.num_viagens;
-        for (int j = 0; j < taxi.num_viagens; j++) {
-        Viagem* viagem = &taxi.viagens[j];
-        total += viagem->valor;
-        }
+    while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1)
+    {
+        numero_viagens += taxi.num_viagens;
     }
-
+    
     fclose(arquivo);
-    if (num_viagens == 0) {
-        return 0;
-    }
+
+    return numero_viagens;
+}
+
+float calcular_media_viagens() {
+    
+    int num_viagens = contar_numero_viagens();
+    float total = calcular_valor_total_viagens();
+   
     return total / num_viagens;
 }
 
@@ -132,29 +136,7 @@ float calcular_iva_total(){
         return 0;
     }
     
-    //printf("        |   # IVA total:............. %.2f EUR        |\n", total_iva);
-    //printf("\n Valor total em IVA atual: %.2f EUR", total_iva);
-
     return total_iva;
-}
-
-//Funções Extra trabalho:
-
-//Opção 15 Menu:
-int contabilizar_viagens_taxi(){
-    FILE* arquivo = fopen("taxis.dat", "rb");
-    if (arquivo == NULL) {
-        return -1;
-    }
-
-    Taxi taxi;
-    while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1) {
-        printf("        |   # Taxi %.2d:....... %d viagens           |\n", taxi.num, taxi.num_viagens);
-    }
-
-    fclose(arquivo);
-
-    return 0;
 }
 
 float calcular_TotalComIVA(){
