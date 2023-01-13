@@ -12,7 +12,9 @@ This project was created for evaluation in the subject of **Algorithms and Data 
 
 After downloading the solution, you can run the application, it is already compiled.
 
-**Application usage**
+
+**Application usage:**
+
 The application already comes with some registered trips, but if you prefer to clear the existing data, just choose option 4 from the main menu and then use the "Inciar / Reniciar Empresa" function.
 
 **Compilation commands:**
