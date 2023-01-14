@@ -39,7 +39,7 @@ int registrar_viagem(const char* nome_arquivo, int num_taxi, Viagem viagem) {
     if (fp == NULL) {
         return -1;
     }
-
+    
     Taxi taxi;
     fseek(fp, (num_taxi - 1) * sizeof(Taxi), SEEK_SET); // A posição é o index (num_taxi - 1) mutiplicado pelo tamanho em bytes de uma struct Taxi
     fread(&taxi, sizeof(Taxi), 1, fp);

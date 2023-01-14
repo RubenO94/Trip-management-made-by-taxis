@@ -34,6 +34,11 @@ typedef struct {
 
 //    *** Declaração de funções ***
 
+// Funções para escrever e ler o arquivo: (EM DESENVOLVIMENTO)
+int read_arquivo(const char* nome_arquivo, Taxi *taxis);
+int write_arquivo(const char* nome_arquivo, Taxi *taxis);
+
+
 // Criar / Reniciar arquivo taxis.dat
 int criar_taxis(const char* nome_arquivo);
 
@@ -63,6 +68,7 @@ float calcular_media_viagens();
 float calcular_iva_total();
 float contabilizar_valor_tipo(TipoViagem tipo);
 float calcular_viagens_menor_valor();
+float calcular_viagem_maior_valor(int num_taxi);
 float calcular_TotalComIVA(); // EXTRA
 
 //Leituras do teclado:

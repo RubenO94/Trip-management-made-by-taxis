@@ -1,6 +1,7 @@
 #include "../headers/estrutura.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <Windows.h>
 #include <float.h>
 
 int imprimir_IVA_total(){
@@ -272,25 +273,17 @@ int listar_viagem_mais_cara(int num_taxi){
     }
 
     Taxi taxi;
-    Viagem* viagemMaior = NULL;
-        Taxi taxiMaior;
-        float maior_valor = FLT_MIN; // FLT_MIN é a menor representação possível para um float
-        int referencia = 0;
-        float distancia = 0;
-        TipoViagem tipo = 0;
+    float maior_valor = calcular_viagem_maior_valor(num_taxi);
     int taxi_encontrado = 0;
+    int viagem_encontrada = 0;
     while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1) {
         if (taxi.num == num_taxi) {
             taxi_encontrado = 1;
             for (int j = 0; j < taxi.num_viagens; j++) {
                 Viagem* viagem = &taxi.viagens[j];
-                viagemMaior = &taxi.viagens[j];
-                if (viagem->valor > maior_valor) {
-                    maior_valor = viagem->valor;
-                    taxiMaior.num = taxi.num;
-                    referencia = viagem->ref;
-                    distancia = viagem->distancia;
-                    tipo = viagem->tipo;
+                if (viagem->valor == maior_valor) {
+                    imprimir_viagem(taxi, viagem);
+                    viagem_encontrada = 1;
                 }
             }
         }  
@@ -298,14 +291,11 @@ int listar_viagem_mais_cara(int num_taxi){
     fclose(arquivo);
     if(!taxi_encontrado){
         return -5;
-    }else if(viagemMaior == NULL){
-        return -3;
     }
-    viagemMaior->ref = referencia;
-    viagemMaior->tipo = tipo;
-    viagemMaior->distancia = distancia;
-    viagemMaior->valor = maior_valor;
-    imprimir_viagem(taxiMaior, viagemMaior);
+    if (!viagem_encontrada)
+    {
+        return -3;
+    }  
     
     return 0;
 }
@@ -376,7 +366,7 @@ int imprimir_menor_valor (float valor){
 }
 
 int imprimir_viagem(Taxi taxi, Viagem* viagem){
-    sleep(1); // Foi uma maneira de adicionar um "loading" entre viagens para que quando a lista seja longa nao aparecer tudo de uma vez
+    Sleep(400); // Foi uma maneira de adicionar um "loading" entre viagens para que quando a lista seja longa nao aparecer tudo de uma vez
     printf("\n");
     printf("\n");
     printf("            # Viagem: %.3d              # Taxi: %.2d\n", viagem->ref, taxi.num);

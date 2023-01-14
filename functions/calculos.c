@@ -72,6 +72,32 @@ float calcular_viagens_menor_valor() {
     return menor_valor;
 }
 
+float calcular_viagem_maior_valor(int num_taxi){
+    FILE* arquivo = fopen("taxis.dat", "rb");
+    if (arquivo == NULL) {
+        return 0;
+    }
+
+    Taxi taxi;
+    float maior_valor  = FLT_MIN;
+
+    while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1) {
+        if (taxi.num == num_taxi)
+        {
+            for (int j = 0; j < taxi.num_viagens; j++) {
+                Viagem* viagem = &taxi.viagens[j];
+                if (viagem->valor > maior_valor) {
+                    maior_valor = viagem->valor;
+                }
+            }
+        }
+    }    
+    fclose(arquivo);
+
+    return maior_valor;
+
+}
+
 int numero_viagens_tipo(TipoViagem tipo){
      FILE* arquivo = fopen("taxis.dat", "rb");
     if (arquivo == NULL) {
@@ -141,7 +167,7 @@ float calcular_iva_total(){
 
 float calcular_TotalComIVA(){
     float total_sem_iva = calcular_valor_total_viagens();
-    float total_iva = total_sem_iva * IVA;
+    float total_iva = calcular_iva_total();
     float total_com_iva = total_sem_iva + total_iva;
     return total_com_iva;
 }

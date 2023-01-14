@@ -29,12 +29,14 @@ TipoViagem ler_tipo(){
     do{
         printf("     # Insira o tipo de viagem (L - local, N - nacional, I - internacional, O - outra): ");
         scanf("%s", tipo_str);
-        if (tipo_str[0] != 'L' && tipo_str[0] != 'N' && tipo_str[0] != 'I' && tipo_str[0] != 'O')
+        if (tipo_str[0] != 'L' && tipo_str[0] != 'N' && tipo_str[0] != 'I' && tipo_str[0] != 'O'
+        && tipo_str[0] != 'l' && tipo_str[0] != 'n' && tipo_str[0] != 'i' && tipo_str[0] != 'o')
         {
             printf("\nErro: Caracter invalido! Tente novamente.\n");
         }
         
-    } while (tipo_str[0] != 'L' && tipo_str[0] != 'N' && tipo_str[0] != 'I' && tipo_str[0] != 'O');
+    } while (tipo_str[0] != 'L' && tipo_str[0] != 'N' && tipo_str[0] != 'I' && tipo_str[0] != 'O' 
+    && tipo_str[0] != 'l' && tipo_str[0] != 'n' && tipo_str[0] != 'i' && tipo_str[0] != 'o');
 
     switch (tipo_str[0]) {
         case 'L':
@@ -47,6 +49,18 @@ TipoViagem ler_tipo(){
         tipo = INTERNACIONAL;
         break;
         case 'O':
+        tipo = OUTRA;
+        break;
+        case 'l':
+        tipo = LOCAL;
+        break;
+        case 'n':
+        tipo = NACIONAL;
+        break;
+        case 'i':
+        tipo = INTERNACIONAL;
+        break;
+        case 'o':
         tipo = OUTRA;
         break;
     }
