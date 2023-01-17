@@ -318,6 +318,22 @@ int imprimir_valor_total(){
     return 0;
 }
 
+int imprimir_valor_total1(){
+    float total = calcular_valor_total_viagens();
+    limpar_tela();
+    printf("\n            //////////// # GESTAO DE VIAGENS # ////////////\n\n\n");
+    printf("        +---------------------------------------------------------+\n");
+    printf("        |                     Valor total (S/IVA)                 |\n");
+    printf("        +---------------------------------------------------------+\n");
+    printf("\n");
+    printf("\n");
+    printf("            # Valor total (S/IVA):.... %.2f EUR\n", total);
+    printf("\n");
+    printf("        ___________________________________________________________\n");
+
+    return 0;
+}
+
 int imprimir_media_viagens(){
     float media = calcular_media_viagens();
     limpar_tela();

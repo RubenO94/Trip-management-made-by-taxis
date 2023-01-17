@@ -3,24 +3,19 @@
 
 // EM DESENVOLVIMENTO
 
-int read_arquivo(const char* nome_arquivo, Taxi *taxis) {
-    FILE* fp = fopen(nome_arquivo, "rb");
+int read_arquivo(Taxi lista[]) {
+    FILE* fp = fopen("taxis.dat", "rb");
     if (fp == NULL) {
         return -1; 
     }
 
-    fread(taxis, sizeof(Taxi), NUM_TAXIS, fp);
-    fclose(fp);
-    return 0; 
-}
-
-int write_arquivo(const char* nome_arquivo, Taxi *taxis) {
-    FILE* fp = fopen(nome_arquivo, "wb");
-    if (fp == NULL) {
-        return -1; 
+    Taxi taxi;
+    int index = 0;
+    while (fread(&taxi, sizeof(Taxi), 1, fp) == 1)
+    {
+       lista[index] = taxi;
+       index++;
     }
-
-    fwrite(taxis, sizeof(Taxi), NUM_TAXIS, fp);
     fclose(fp);
-    return 0; 
+    return index; 
 }
