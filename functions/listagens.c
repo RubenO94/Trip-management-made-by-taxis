@@ -26,12 +26,12 @@ int listar_viagens(const char* nome_arquivo) {
     printf("        |                      Lista de Viagens                   |\n");
     printf("        +---------------------------------------------------------+\n");
 
+    int totalViagens = contar_numero_viagens();
     FILE* arquivo = fopen(nome_arquivo, "rb");
     if (arquivo == NULL) {
         return -1;
     }
 
-    int totalViagens = contar_numero_viagens();
     Taxi taxi;
     int viagem_encontrada = 0;
     while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1) {

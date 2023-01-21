@@ -20,14 +20,22 @@ The application already comes with some registered trips, but if you prefer to c
 **Compilation commands:**
 
 ***Windows***
+```
+
 - Compile: all
 - Clear all: cleanw
 - Clean only .d files: cleandepw
 
+```
+
 ***Linux and MacOS***
+```
+
 - Compile: all
 - Clear all: clean
 - Clean only .d files: cleandep
+
+```
 
 ### Data structure
 
@@ -67,5 +75,6 @@ typedef struct {
 
 - [Rúben Oliveira](https://github.com/RubenO94)
 - [Rafael Gomes](https://github.com/RafaelGGomes)
+- [Ana Beatriz](https://github.com/beaaax5)
 
 

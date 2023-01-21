@@ -4,7 +4,7 @@
 #include "limpar_consola.h"
 
 //Constantes globais:
-#define MAX_VIAGENS 5
+#define MAX_VIAGENS 2
 #define NUM_TAXIS 10
 #define IVA 0.23
 
@@ -36,9 +36,6 @@ typedef struct {
 
 // Função para ler o arquivo: (EM DESENVOLVIMENTO)
 int read_arquivo( Taxi lista[]);
-
-float calcular_valor_total_viagens1();
-int imprimir_valor_total1();
 
 // Criar / Reniciar arquivo taxis.dat
 int criar_taxis(const char* nome_arquivo);

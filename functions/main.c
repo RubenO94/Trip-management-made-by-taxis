@@ -94,11 +94,7 @@ int sub_menu_Admin(){
             // infos_empresa();
             printf("\n\tErro: Funcao ainda em desenvolvimento...\n");
             pausar_mensagem();
-            break;
-        case 3:
-            imprimir_valor_total1();
-            pausar_mensagem();
-            break;      
+            break;   
         default:
             printf("\n\n Opcao invalida. Tente novamente");
             pausar_mensagem();
