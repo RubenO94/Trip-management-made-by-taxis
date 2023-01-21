@@ -16,7 +16,7 @@ int ler_num_taxi() {
         scanf("%d", &num);
         if (num < 1 || num > NUM_TAXIS)
         {
-            printf("\nErro: O numero tem ser entre 1 e %d!\nTente novamente.\n", NUM_TAXIS);
+            printf("\n\tErro: O numero tem ser entre 1 e %d! Tente novamente.\n", NUM_TAXIS);
         }
         
     } while (num < 1 || num > NUM_TAXIS);
@@ -32,7 +32,7 @@ TipoViagem ler_tipo(){
         if (tipo_str[0] != 'L' && tipo_str[0] != 'N' && tipo_str[0] != 'I' && tipo_str[0] != 'O'
         && tipo_str[0] != 'l' && tipo_str[0] != 'n' && tipo_str[0] != 'i' && tipo_str[0] != 'o')
         {
-            printf("\nErro: Caracter invalido! Tente novamente.\n");
+            printf("\n\tErro: Caracter invalido! Tente novamente.\n");
         }
         
     } while (tipo_str[0] != 'L' && tipo_str[0] != 'N' && tipo_str[0] != 'I' && tipo_str[0] != 'O' 
@@ -76,7 +76,7 @@ float ler_distancia(){
         scanf("%f", &distancia);
         if (distancia <= 0)
         {
-            printf("\nErro: A distancia nao pode ter valor zero ou negativo!\nTente novamente.\n");
+            printf("\n\tErro: A distancia nao pode ter valor zero ou negativo! Tente novamente.\n");
         }
         
     } while (distancia <= 0);
@@ -92,7 +92,7 @@ float ler_valor(){
         scanf("%f", &valor);
         if (valor <= 0)
         {
-            printf("\nErro: O valor da viagem nao pode ser zero ou negativo!\nTente novamente.\n");
+            printf("\n\tErro: O valor da viagem nao pode ser zero ou negativo! Tente novamente.\n");
         }
         
     } while (valor <= 0);

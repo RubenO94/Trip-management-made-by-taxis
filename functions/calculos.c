@@ -1,45 +1,100 @@
 #include "../headers/estrutura.h"
-#include <stdio.h>
-#include <float.h>
-   
+#include "stdio.h"
+#include "float.h"
+
+
 float calcular_valor_total_viagens() {
-    FILE* arquivo = fopen("taxis.dat", "rb");
-    if (arquivo == NULL) {
-        return 0;
-    }
+    
+    Taxi lista[NUM_TAXIS];
+    int tamanho = read_arquivo(lista);
 
     float total = 0;
-    Taxi taxi;
-    while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1) {
-        for (int j = 0; j < taxi.num_viagens; j++) {
-        Viagem* viagem = &taxi.viagens[j];
-        total += viagem->valor;
+    for (int i = 0; i < tamanho; i++)
+    {
+        for (int j = 0; j < lista[i].num_viagens; j++) {
+            total += lista[i].viagens[j].valor;
         }
     }
-
-    fclose(arquivo);
-
     return total;
 }
 
 int contar_numero_viagens(){
-    FILE* arquivo = fopen("taxis.dat", "rb");
-    if (arquivo == NULL)
-    {
-        return -1;
-    }
+    Taxi lista[NUM_TAXIS];
+    int tamanho = read_arquivo(lista);
     
-    int numero_viagens = 0;
-    Taxi taxi;
-    while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1)
-    {
-        numero_viagens += taxi.num_viagens;
+    int total = 0;
+    for (int i = 0; i < tamanho; i++){
+        total += lista[i].num_viagens;
     }
-    
-    fclose(arquivo);
-
-    return numero_viagens;
+    return total;
 }
+
+int numero_viagens_tipo(TipoViagem tipo){
+     Taxi lista[NUM_TAXIS];
+    int tamanho = read_arquivo(lista);
+
+    int total = 0;
+    for (int i = 0; i < tamanho; i++)
+    {
+        for (int j = 0; j < lista[i].num_viagens; j++) {
+            if (lista[i].viagens[j].tipo == tipo){
+                total++;
+            }
+        }
+    }
+    return total;
+}
+
+float contabilizar_valor_tipo(TipoViagem tipo){
+    Taxi lista[NUM_TAXIS];
+    int tamanho = read_arquivo(lista);
+    float total = 0;
+    
+    for (int i = 0; i < tamanho; i++){
+        for (int j = 0; j < lista[i].num_viagens; j++){
+                if(lista[i].viagens[j].tipo == tipo){
+
+                total += lista[i].viagens[j].valor;
+            }
+        }  
+    }
+    return total;
+}
+
+float calcular_viagens_menor_valor() {
+    
+    Taxi lista[NUM_TAXIS];
+    int tamanho = read_arquivo(lista);
+
+    float menor_valor = FLT_MAX; // FLT_MAX é a maior representação possível para um float
+    
+    for(int i = 0; i< tamanho; i++){
+        for (int j = 0; j < lista[i].num_viagens; j++){
+            if(lista[i].viagens[j].valor < menor_valor){
+            menor_valor = lista[i].viagens[j].valor;
+            }
+        }
+    }
+    return menor_valor;
+}
+
+float calcular_viagem_maior_valor(int num_taxi){
+    Taxi lista[NUM_TAXIS];
+    int tamanho = read_arquivo(lista);
+    float maior_valor  = FLT_MIN; // FLOAT_MIN reprensenta o menor float possivel
+
+
+    for (int i = 0; i < tamanho; i++){
+       for (int j=0; j< lista[i].num_viagens; j++){
+        
+            if(lista[i].viagens[j].valor < maior_valor){
+            maior_valor = lista[i].viagens[j].valor;
+            }
+        }
+    } 
+    return maior_valor;
+}
+
 
 float calcular_media_viagens() {
     
@@ -50,115 +105,11 @@ float calcular_media_viagens() {
 }
 
 
-float calcular_viagens_menor_valor() {
-    FILE* arquivo = fopen("taxis.dat", "rb");
-    if (arquivo == NULL) {
-        return 0;
-    }
-
-    Taxi taxi;
-    float menor_valor = FLT_MAX; // FLT_MAX é a maior representação possível para um float
-
-    while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1) {
-        for (int j = 0; j < taxi.num_viagens; j++) {
-            Viagem* viagem = &taxi.viagens[j];
-            if (viagem->valor < menor_valor) {
-                menor_valor = viagem->valor;
-            }
-        }
-    }    
-    fclose(arquivo);
-
-    return menor_valor;
-}
-
-float calcular_viagem_maior_valor(int num_taxi){
-    FILE* arquivo = fopen("taxis.dat", "rb");
-    if (arquivo == NULL) {
-        return 0;
-    }
-
-    Taxi taxi;
-    float maior_valor  = FLT_MIN;
-
-    while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1) {
-        if (taxi.num == num_taxi)
-        {
-            for (int j = 0; j < taxi.num_viagens; j++) {
-                Viagem* viagem = &taxi.viagens[j];
-                if (viagem->valor > maior_valor) {
-                    maior_valor = viagem->valor;
-                }
-            }
-        }
-    }    
-    fclose(arquivo);
-
-    return maior_valor;
-
-}
-
-int numero_viagens_tipo(TipoViagem tipo){
-     FILE* arquivo = fopen("taxis.dat", "rb");
-    if (arquivo == NULL) {
-        return 0;
-    }
-
-    int num_viagens = 0;
-    Taxi taxi;
-    while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1) {
-        for (int j = 0; j < taxi.num_viagens; j++) {
-            Viagem* viagem = &taxi.viagens[j];
-            if (viagem->tipo == tipo)
-            {
-                num_viagens++;
-            }
-        }
-    }
-
-    fclose(arquivo);
-    if (num_viagens == 0) {
-        return 0;
-    }
-
-    return num_viagens;
-}
-
-
-float contabilizar_valor_tipo(TipoViagem tipo){
-    FILE* arquivo = fopen("taxis.dat", "rb");
-    if (arquivo == NULL) {
-    return 0;
-    }
-
-    Taxi taxi;
-    float total = 0;
-    while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1) {
-        for (int j = 0; j < taxi.num_viagens; j++) {
-            Viagem *viagem = &taxi.viagens[j];
-            if (viagem->tipo == tipo) {
-            total += viagem->valor;
-            
-            }
-        }
-    }
-
-    if (!total)
-    {
-        return 0;
-    }
-    
-    fclose(arquivo);
-    return total;
-}
-
-
 float calcular_iva_total(){
     
     float total_sem_iva = calcular_valor_total_viagens();
     float total_iva = total_sem_iva * IVA;
-    if (total_iva < 0)
-    {
+    if (total_iva < 0){
         return 0;
     }
     
