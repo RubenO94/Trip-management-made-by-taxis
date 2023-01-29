@@ -29,7 +29,7 @@ int criar_taxis(const char* nome_arquivo) {
     // Mensagem alerta:
     printf("\n\n\tEmpresa incializada...");
     printf("\n\tForam adicionados %d taxis.", NUM_TAXIS);
-    printf("\n\tSucesso! Programa pronto a funcionar.");
+    printf("\n\tPrograma pronto a funcionar.");
     return 0; // Sucesso
 }
 

@@ -18,7 +18,7 @@ int imprimir_IVA_total(){
     return 0;
 }
 
-int listar_viagens(const char* nome_arquivo) {
+int listar_viagens() {
 
     limpar_tela();
     printf("\n            //////////// # GESTAO DE VIAGENS # ////////////\n\n\n");
@@ -26,31 +26,30 @@ int listar_viagens(const char* nome_arquivo) {
     printf("        |                      Lista de Viagens                   |\n");
     printf("        +---------------------------------------------------------+\n");
 
-    int totalViagens = contar_numero_viagens();
-    FILE* arquivo = fopen(nome_arquivo, "rb");
-    if (arquivo == NULL) {
+    Taxi lista[NUM_TAXIS];
+    int tamanhoTaxis = read_arquivo(lista);
+    if (tamanhoTaxis == -1)
+    {
         return -1;
     }
-
-    Taxi taxi;
+    int totalViagens = contar_numero_viagens();
     int viagem_encontrada = 0;
-    while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1) {
-        for (int i = 0; i < taxi.num_viagens; i++) {
-            Viagem *viagem = &taxi.viagens[i];
-            imprimir_viagem(taxi, viagem);
-            if (viagem != NULL)
+
+    for (int i = 0; i < tamanhoTaxis; i++){
+        for (int j = 0; j < lista[i].num_viagens; j++) {
+            imprimir_viagem(lista[i], &lista[i].viagens[j]);
+            if (lista[i].num_viagens != 0)
             {
                 viagem_encontrada = 1;
             }
-        
         }
     }
-     printf("\n");
+   
+    printf("\n");
     printf("            # Total de viagens:............. %d\n", totalViagens);
     printf("\n");
     printf("        ___________________________________________________________\n");
     printf("\n");
-    fclose(arquivo);
     if (!viagem_encontrada)
     {
         return -4; 
@@ -65,41 +64,40 @@ int listar_viagens_taxi(int num_taxi) {
     printf("        +---------------------------------------------------------+\n");
     printf("        |                    Viagens do Taxi - %.2d                 |\n", num_taxi);
     printf("        +---------------------------------------------------------+\n");
-    FILE* arquivo = fopen("taxis.dat", "rb");
-    if (arquivo == NULL) {
+    
+    Taxi lista[NUM_TAXIS];
+    int tamanhoTaxis = read_arquivo(lista);
+    if (tamanhoTaxis == -1)
+    {
         return -1;
     }
-
-    Taxi taxi;
     int taxi_encontrado = 0;
     int viagem_encontrada = 0;
-    while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1) {
-        if (taxi.num == num_taxi) {
-            taxi_encontrado = 1;
-            for (int j = 0; j < taxi.num_viagens; j++) {
-                Viagem* viagem = &taxi.viagens[j];
-                imprimir_viagem(taxi, viagem);
-                if (viagem != NULL)
+    for (int i = 0; i < tamanhoTaxis; i++)
+    {
+        if(lista[i].num == num_taxi){
+            taxi_encontrado= 1;
+            for (int j = 0; j < lista[i].num_viagens; j++)
+            {
+                imprimir_viagem(lista[i], &lista[i].viagens[j]);
+                if (lista[i].num_viagens != 0)
                 {
                     viagem_encontrada = 1;
                 }
                 
             }
+            printf("\n");
+            printf("            # Total de viagens efetuadas pelo taxi %.2d: %d\n",lista[i].num, lista[i].num_viagens);
+            printf("\n");
+            printf("        ___________________________________________________________\n");
             break;
-        }  
+        }
     }
-
-    fclose(arquivo);
     if(!taxi_encontrado){
         return -5;
     }else if(!viagem_encontrada){
         return -3;
     }
-    printf("\n");
-    printf("            # Total de viagens efetuadas pelo taxi %.2d: %d\n",taxi.num, taxi.num_viagens);
-    printf("\n");
-    printf("        ___________________________________________________________\n");
-
     return 0; 
 }
 
@@ -109,25 +107,30 @@ int listar_viagem_por_referencia(int referencia){
     printf("        +---------------------------------------------------------+\n");
     printf("        |                    Viagem por Referencia                |\n");
     printf("        +---------------------------------------------------------+\n");
-    FILE* arquivo = fopen("taxis.dat", "rb");
-    if (arquivo == NULL) {
-    return -1;
+    Taxi lista[NUM_TAXIS];
+    int tamanhoTaxis = read_arquivo(lista);
+    int viagemEncontrada = 0;
+    if (tamanhoTaxis == -1)
+    {
+        return -1;
     }
 
-    Taxi taxi;
-    while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1) {
-        for (int j = 0; j < taxi.num_viagens; j++) {
-            Viagem *viagem = &taxi.viagens[j];
-            if (viagem->ref == referencia) {
-            imprimir_viagem(taxi, viagem);
-            fclose(arquivo);
-            return 0;
+    for (int i = 0; i < tamanhoTaxis; i++)
+    {
+        for (int j = 0; j < lista[i].num_viagens; j++)
+        {
+            if(lista[i].viagens[j].ref == referencia){
+                viagemEncontrada = 1;
+                imprimir_viagem(lista[i], &lista[i].viagens[j]);
+                return 0;
             }
         }
+        
     }
-
-    fclose(arquivo);
-    return -8;
+    if(!viagemEncontrada){
+        return -8;
+    }
+    return -10;
 }
 
 int listar_viagens_tipo (TipoViagem tipo){
@@ -152,25 +155,26 @@ int listar_viagens_tipo (TipoViagem tipo){
         break;
     }
     printf("        +---------------------------------------------------------+\n");
-    FILE* arquivo = fopen("taxis.dat", "rb");
-    if (arquivo == NULL) {
-    return -1;
+     Taxi lista[NUM_TAXIS];
+    int tamanhoTaxis = read_arquivo(lista);
+    int tipoEncontrado = 0;
+    if (tamanhoTaxis == -1)
+    {
+        return -1;
     }
 
-    Taxi taxi;
-    int tipo_encontrado = 0;
-    while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1) {
-        for (int j = 0; j < taxi.num_viagens; j++) {
-            Viagem *viagem = &taxi.viagens[j];
-            if (viagem->tipo == tipo) {
-            imprimir_viagem(taxi, viagem);
-            tipo_encontrado = 1;
+    for (int i = 0; i < tamanhoTaxis; i++)
+    {
+        for (int j = 0; j < lista[i].num_viagens; j++)
+        {
+            if(lista[i].viagens[j].tipo == tipo){
+                tipoEncontrado = 1;
+                imprimir_viagem(lista[i], &lista[i].viagens[j]);
             }
         }
+        
     }
-
-    fclose(arquivo);
-    if (!tipo_encontrado)
+    if (!tipoEncontrado)
     {
         return -6;
     }
@@ -180,37 +184,39 @@ int listar_viagens_tipo (TipoViagem tipo){
 
 
 int listar_viagens_valor_acima_media(){
-    float media = calcular_media_viagens();
-    int viagemEncontrada = 0;
     limpar_tela();
     printf("\n            //////////// # GESTAO DE VIAGENS # ////////////\n\n\n");
     printf("        +---------------------------------------------------------+\n");
     printf("        |               Viagens com valor acima da media          |\n");
     printf("        +---------------------------------------------------------+\n");
     printf("\n");
+
+    Taxi lista[NUM_TAXIS];
+    int tamanhoTaxis = read_arquivo(lista);
+    if (tamanhoTaxis == -1)
+    {
+        return -1;
+    }
+    float media = calcular_media_viagens();
+    int viagemEncontrada = 0;
     if (media <= 0) {
         return -7;
     }
     printf("            # Media Atual:.......... %.2f EUR\n", media);
     printf("\n");
     printf("        ___________________________________________________________\n");
-    FILE* arquivo = fopen("taxis.dat", "rb");
-    if (arquivo == NULL) {
-        return -1;
-    }
-    Taxi taxi;
-    while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1) {
-        for (int j = 0; j < taxi.num_viagens; j++) {
-            Viagem* viagem = &taxi.viagens[j];
-            if (viagem->valor > media)
-            {
-                imprimir_viagem(taxi, viagem);
+
+    for (int i = 0; i < tamanhoTaxis; i++)
+    {
+        for (int j = 0; j < lista[i].num_viagens; i++)
+        {
+            if(lista[i].viagens[j].valor > media){
                 viagemEncontrada = 1;
+                imprimir_viagem(lista[i], &lista[i].viagens[j]);
             }
         }
+        
     }
-
-    fclose(arquivo);
     if (!viagemEncontrada)
     {
         return -9;
@@ -267,28 +273,29 @@ int listar_viagem_mais_cara(int num_taxi){
     printf("        +---------------------------------------------------------+\n");
     printf("\n");
     printf("\n");
-    FILE* arquivo = fopen("taxis.dat", "rb");
-    if (arquivo == NULL) {
+    Taxi lista[NUM_TAXIS];
+    int tamanhoTaxis = read_arquivo(lista);
+    if (tamanhoTaxis == -1)
+    {
         return -1;
     }
-
-    Taxi taxi;
     float maior_valor = calcular_viagem_maior_valor(num_taxi);
     int taxi_encontrado = 0;
     int viagem_encontrada = 0;
-    while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1) {
-        if (taxi.num == num_taxi) {
+
+    for (int i = 0; i < tamanhoTaxis; i++)
+    {
+        if(lista[i].num == num_taxi){
             taxi_encontrado = 1;
-            for (int j = 0; j < taxi.num_viagens; j++) {
-                Viagem* viagem = &taxi.viagens[j];
-                if (viagem->valor == maior_valor) {
-                    imprimir_viagem(taxi, viagem);
+            for (int j = 0; j < lista[i].num_viagens; j++)
+            {
+                if(lista[i].viagens[j].valor == maior_valor){
                     viagem_encontrada = 1;
+                    imprimir_viagem(lista[i], &lista[i].viagens[j]);
                 }
-            }
-        }  
+            } 
+        }
     }
-    fclose(arquivo);
     if(!taxi_encontrado){
         return -5;
     }
@@ -349,31 +356,34 @@ int imprimir_media_viagens(){
     return 0;
 }
 
-int imprimir_menor_valor (float valor){
+int imprimir_menor_valor (){
     limpar_tela();
     printf("\n            //////////// # GESTAO DE VIAGENS # ////////////\n\n\n");
     printf("        +---------------------------------------------------------+\n");
     printf("        |                Viagens com o preco mais barato          |\n");
     printf("        +---------------------------------------------------------+\n");
-    FILE* arquivo = fopen("taxis.dat", "rb");
-    if (arquivo == NULL)
+    
+    Taxi lista[NUM_TAXIS];
+    int tamanhoTaxis = read_arquivo(lista);
+    if (tamanhoTaxis == -1)
     {
         return -1;
     }
+    int viagemEncontrada = 0;
+    float menorValor = calcular_viagens_menor_valor();
 
-    Taxi taxi;
-    while (fread(&taxi, sizeof(Taxi), 1, arquivo) == 1) {
-        for (int j = 0; j < taxi.num_viagens; j++) {
-            Viagem* viagem = &taxi.viagens[j];
-            if (viagem->valor == valor) {
-                imprimir_viagem(taxi, viagem);
+    for (int i = 0; i < tamanhoTaxis; i++)
+    {
+        for (int j = 0; j < lista[i].num_viagens; j++)
+        {
+            if(lista[i].viagens[j].valor == menorValor){
+                viagemEncontrada = 1;
+                imprimir_viagem(lista[i], &lista[i].viagens[j]);
             }
         }
-    }    
-    
-    fclose(arquivo); 
-
-    if (valor == FLT_MAX)
+        
+    }
+    if (!viagemEncontrada)
     {
         return -4;
     }

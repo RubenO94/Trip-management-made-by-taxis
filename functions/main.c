@@ -91,8 +91,8 @@ int sub_menu_Admin(){
             pausar_mensagem();
             break;
         case 2:
-            // infos_empresa();
-            printf("\n\tErro: Funcao ainda em desenvolvimento...\n");
+            retorno = informacoes_Sistema();
+            mensagem_retorno(retorno);
             pausar_mensagem();
             break;   
         default:
@@ -157,7 +157,7 @@ int sub_menu_Listagens(){
             pausar_mensagem();
             break;
         case 5:
-            retorno = imprimir_menor_valor(calcular_viagens_menor_valor());
+            retorno = imprimir_menor_valor();
             mensagem_retorno(retorno);
             pausar_mensagem();
             break;

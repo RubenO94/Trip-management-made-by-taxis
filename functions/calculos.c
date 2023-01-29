@@ -19,6 +19,7 @@ float calcular_valor_total_viagens() {
 }
 
 int contar_numero_viagens(){
+    
     Taxi lista[NUM_TAXIS];
     int tamanho = read_arquivo(lista);
     
@@ -30,7 +31,8 @@ int contar_numero_viagens(){
 }
 
 int numero_viagens_tipo(TipoViagem tipo){
-     Taxi lista[NUM_TAXIS];
+    
+    Taxi lista[NUM_TAXIS];
     int tamanho = read_arquivo(lista);
 
     int total = 0;
@@ -87,7 +89,7 @@ float calcular_viagem_maior_valor(int num_taxi){
     for (int i = 0; i < tamanho; i++){
        for (int j=0; j< lista[i].num_viagens; j++){
         
-            if(lista[i].viagens[j].valor < maior_valor){
+            if(lista[i].viagens[j].valor > maior_valor){
             maior_valor = lista[i].viagens[j].valor;
             }
         }

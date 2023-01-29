@@ -4,8 +4,8 @@
 #include "limpar_consola.h"
 
 //Constantes globais:
-#define MAX_VIAGENS 2
-#define NUM_TAXIS 10
+#define MAX_VIAGENS 5
+#define NUM_TAXIS 20
 #define IVA 0.23
 
 
@@ -44,7 +44,7 @@ int criar_taxis(const char* nome_arquivo);
 int registrar_viagem(const char* nome_arquivo, int num_taxi, Viagem viagem);
 
 // Listagens:
-int listar_viagens(const char* nome_arquivo);
+int listar_viagens();
 int listar_viagem_por_referencia(int referencia);
 int listar_viagens_taxi(int num_taxi);
 int listar_numero_viagens_tipo();
@@ -55,7 +55,7 @@ int listar_viagem_mais_cara(int num_taxi);
 int imprimir_viagem(Taxi taxi, Viagem* viagem);
 int imprimir_valor_total();
 int imprimir_media_viagens();
-int imprimir_menor_valor (float valor);
+int imprimir_menor_valor ();
 int imprimir_IVA_total();
 
 //Calculos:
@@ -86,6 +86,5 @@ void mensagem_retorno(int retorno);
 
 
 // Funções extra Trabalho:
-int contabilizar_viagens_taxi();
-int top10_viagens_baratas();
+int informacoes_Sistema();
 #endif
