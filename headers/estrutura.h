@@ -34,7 +34,7 @@ typedef struct {
 
 //    *** Declaração de funções ***
 
-// Função para ler o arquivo: (EM DESENVOLVIMENTO)
+// Função para ler o arquivo taxis.dat
 int read_arquivo( Taxi lista[]);
 
 // Criar / Reniciar arquivo taxis.dat
@@ -83,8 +83,6 @@ int carregar_contador();
 void reset_contador();
 void pausar_mensagem();
 void mensagem_retorno(int retorno);
-
-
-// Funções extra Trabalho:
 int informacoes_Sistema();
+
 #endif
