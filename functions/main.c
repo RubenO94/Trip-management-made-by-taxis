@@ -1,3 +1,12 @@
+/*
+Curso: Desenvolvimento Web e Multimédia (2022/23)
+Alunos:
+    24864 - Rafael Gomes
+    24861 - Rúben Oliveira
+    24377 - Ana Macedo
+
+*/
+
 #include "../headers/estrutura.h"
 #include <stdio.h>
 
