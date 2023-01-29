@@ -19,7 +19,7 @@ int main() {
         printf("        +---------------------------------------------------------+\n");
         printf("        +---------------------------------------------------------+\n");
         printf("        |                                                         |\n");
-        printf("        |       1 - Registrar Nova Viagem                         |\n");
+        printf("        |       1 - Registar Nova Viagem                         |\n");
         printf("        |       2 - Listagens & Pesquisas                         |\n");
         printf("        |       3 - Calculos & Estatisticas                       |\n");
         printf("        |       4 - Ferramentas de Administrador                  |\n");
@@ -36,7 +36,7 @@ int main() {
             printf("\n");
             break;
         case 1:
-            retorno = registrar_viagem("taxis.dat", ler_num_taxi(), ler_viagem());
+            retorno = registar_viagem("taxis.dat", ler_num_taxi(), ler_viagem());
             mensagem_retorno(retorno);
             pausar_mensagem();
             break;

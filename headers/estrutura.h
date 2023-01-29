@@ -41,7 +41,7 @@ int read_arquivo( Taxi lista[]);
 int criar_taxis(const char* nome_arquivo);
 
 // Adicionar nova viagem a um taxi:
-int registrar_viagem(const char* nome_arquivo, int num_taxi, Viagem viagem);
+int registar_viagem(const char* nome_arquivo, int num_taxi, Viagem viagem);
 
 // Listagens:
 int listar_viagens();

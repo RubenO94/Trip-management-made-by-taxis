@@ -33,7 +33,7 @@ int criar_taxis(const char* nome_arquivo) {
     return 0; // Sucesso
 }
 
-int registrar_viagem(const char* nome_arquivo, int num_taxi, Viagem viagem) {
+int registar_viagem(const char* nome_arquivo, int num_taxi, Viagem viagem) {
    
     FILE* fp = fopen(nome_arquivo, "r+b");
     if (fp == NULL) {
