@@ -19,7 +19,7 @@ int main() {
         printf("        +---------------------------------------------------------+\n");
         printf("        +---------------------------------------------------------+\n");
         printf("        |                                                         |\n");
-        printf("        |       1 - Registar Nova Viagem                         |\n");
+        printf("        |       1 - Registar Nova Viagem                          |\n");
         printf("        |       2 - Listagens & Pesquisas                         |\n");
         printf("        |       3 - Calculos & Estatisticas                       |\n");
         printf("        |       4 - Ferramentas de Administrador                  |\n");
