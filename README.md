@@ -1,5 +1,7 @@
 # Simulation of trip management made by taxis
 
+[!Taxi](https://i.pinimg.com/originals/57/07/26/570726f9398849aa200fbcba9466f9f2.gif)
+
 ### Description
 
 This project was created for evaluation in the subject of **Algorithms and Data Structures** of the course **Web Development and Multimedia** at the **Instituto Politécnico do Cávado e do Ave (IPCA)**.
