@@ -103,7 +103,7 @@ int sub_menu_Admin(){
             retorno = informacoes_Sistema();
             mensagem_retorno(retorno);
             pausar_mensagem();
-            break;   
+            break;        
         default:
             printf("\n\n Opcao invalida. Tente novamente");
             pausar_mensagem();
@@ -208,6 +208,7 @@ int sub_menu_Calculos(){
         printf("        |       3 - Calcular IVA total das viagens                |\n");
         printf("        |       4 - Calcular valor total por cada tipo de viagem  |\n");
         printf("        |       5 - Exibir numero de viagens de cada tipo         |\n");
+        printf("        |       6 - Top 10 das viagens mais baratas               |\n");
         printf("        |       0 - Voltar                                        |\n");
         printf("        |                                                         |\n");
         printf("        +---------------------------------------------------------+\n");
@@ -242,7 +243,12 @@ int sub_menu_Calculos(){
             retorno = listar_numero_viagens_tipo();
             mensagem_retorno(retorno);
             pausar_mensagem();
-            break;                       
+            break;
+        case 6:
+            retorno = lista_top10();
+            mensagem_retorno(retorno);
+            pausar_mensagem();     
+            break;                         
         default:
             printf("\n\n Opcao invalida. Tenta novamente");
             pausar_mensagem();

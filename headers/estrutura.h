@@ -85,4 +85,9 @@ void pausar_mensagem();
 void mensagem_retorno(int retorno);
 int informacoes_Sistema();
 
+//Funções extra:
+
+int top10_viagens_baratas(float top10[]);
+int lista_top10();
+
 #endif
